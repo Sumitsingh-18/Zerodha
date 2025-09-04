@@ -1,0 +1,249 @@
+:root{
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --primary: #2563eb;
+  --primary-soft: #e8efff;
+  --green: #16a34a;
+  --green-soft: #e8f7ee;
+  --red: #dc2626;
+  --red-soft: #ffecec;
+  --yellow: #f59e0b;
+  --yellow-soft: #fff4df;
+  --shadow: 0 10px 24px rgba(0,0,0,.06);
+}
+
+/* Page */
+.orders-page{
+  min-height: 100%;
+  padding: 24px;
+  background: var(--bg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color: var(--text);
+}
+
+/* Header */
+.orders-header{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 768px){
+  .orders-header{
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.orders-title{
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.orders-subtitle{
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Search */
+.orders-search{
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.search-icon{
+  position: absolute;
+  left: 12px;
+  top: 9px;
+  width: 18px;
+  height: 18px;
+  color: #94a3b8;
+}
+
+.search-input{
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+  transition: box-shadow .2s, border-color .2s;
+}
+
+.search-input:focus{
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+}
+
+/* Filters */
+.orders-filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 20px;
+}
+
+.filter-chip{
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+  transition: background .2s, color .2s, box-shadow .2s, border-color .2s;
+}
+
+.filter-chip:hover{
+  background: #e5e7eb;
+}
+
+.filter-chip.active{
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 6px 16px rgba(37,99,235,.25);
+}
+
+/* Card wrapper */
+.orders-card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+/* Table */
+.orders-table{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.orders-table thead{
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.orders-table th,
+.orders-table td{
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+
+.orders-table tbody tr:nth-child(even){
+  background: #fafafa;
+}
+
+.orders-table tbody tr:hover{
+  background: #eef5ff;
+}
+
+/* Cells */
+.cell-symbol{
+  font-weight: 600;
+  color: #111827;
+}
+
+.cell-money{
+  font-weight: 600;
+}
+
+/* Badges */
+.badge{
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.badge.buy{
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.badge.sell{
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.badge.completed{
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.badge.pending{
+  background: var(--yellow-soft);
+  color: var(--yellow);
+}
+
+.badge.cancelled{
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.badge.muted{
+  background: #eceff3;
+  color: #6b7280;
+}
+
+/* Time */
+.cell-time{
+  color: #6b7280;
+  font-size: 12px;
+}
+
+/* Empty state */
+.orders-empty{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.orders-empty h3{
+  margin: 16px 0 6px;
+  font-size: 18px;
+}
+
+.orders-empty p{
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.empty-graphic{
+  width: 120px;
+  height: 80px;
+  margin: 0 auto;
+  opacity: .9;
+  color: #9aa4b2;
+}
+
+.empty-graphic .eg-rect{
+  fill: #eef2ff;
+  stroke: #d8defa;
+  stroke-width: 1.5;
+}
+
+.empty-graphic .eg-line{
+  fill: #dbe3ff;
+}
