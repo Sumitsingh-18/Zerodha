@@ -29,24 +29,43 @@ const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGO_URL;
 
 const app = express();
+const isProd = process.env.NODE_ENV === "production";
 
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({
-  origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: [process.env.FRONTEND_URL, process.env.DASHBOARD_URL],
+//   credentials: true
+// }));
+
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      const allowed = [
+        process.env.FRONTEND_URL,
+        process.env.DASHBOARD_URL,
+        "http://localhost:3000",
+        "http://localhost:4000",
+      ];
+      if (!origin || allowed.includes(origin)) return cb(null, true);
+      return cb(new Error("CORS blocked: " + origin));
+    },
+    credentials: true,
+  })
+);
+
+app.set("trust proxy", 1);
 
 app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || "dev-secret",
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
   cookie: {
     httpOnly: true,
     sameSite: "lax",
-    secure: false,              // set true when HTTPS/production
+    secure: isProd,              // set true when HTTPS/production
     maxAge: 7 * 24 * 60 * 60 * 1000
   }
 }));
